@@ -29,9 +29,24 @@
         </h2>
 
         <c:if test="${not empty user.notes}">
-            <c:forEach items="${user.notes}" var="note">
-                <p>${note.text}</p>
-            </c:forEach>
+
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Note</th>
+                </tr>
+                </thead>
+                <tbody>
+                <c:forEach items="${user.notes}" var="note" varStatus="loop">
+                    <tr>
+                        <th scope="row">${loop.index + 1}</th>
+                        <td>${note.text}</td>
+                    </tr>
+                </c:forEach>
+
+            </table>
+
         </c:if>
 
         <form action = "/note" method = "POST">
