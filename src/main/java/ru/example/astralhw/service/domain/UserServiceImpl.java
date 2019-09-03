@@ -1,5 +1,6 @@
 package ru.example.astralhw.service.domain;
 
+import ru.example.astralhw.domain.Note;
 import ru.example.astralhw.repository.domain.RoleRepository;
 import ru.example.astralhw.repository.domain.UserRepository;
 import ru.example.astralhw.domain.Role;
@@ -9,6 +10,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -44,5 +46,14 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findByUsername(String username) {
         return userRepository.findByUsername(username);
+    }
+
+    @Override
+    public User addNoteToUser(String username, String noteText) {
+        User user = findByUsername(username);
+        Note note = new Note(noteText);
+        List<Note> userNotes = user.getNotes();
+        userNotes.add(note);
+        return userRepository.save(user);
     }
 }

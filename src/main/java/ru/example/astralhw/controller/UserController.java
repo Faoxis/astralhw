@@ -82,8 +82,8 @@ public class UserController {
     }
 
     @RequestMapping(value = "/note", method = RequestMethod.POST)
-    public String addNote(@RequestParam("note") String note, Model model) {
-        System.out.println(note);
-        return "welcome";
+    public String addNote(@RequestParam("note") String note, Principal principal) {
+        userService.addNoteToUser(principal.getName(), note);
+        return "redirect:/welcome";
     }
 }

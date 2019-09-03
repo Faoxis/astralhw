@@ -6,6 +6,12 @@ import javax.persistence.*;
 @Table(name = "notes")
 public class Note {
 
+    public Note() {}
+
+    public Note(String text) {
+        this.text = text;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

@@ -35,7 +35,8 @@
         </c:if>
 
         <form action = "/note" method = "POST">
-            Add new note: <input type = "text" name = "note_text">
+            <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+            Add new note: <input type = "text" name = "note">
             <input type = "submit" value = "Add" />
         </form>
 
